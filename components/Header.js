@@ -1,4 +1,8 @@
+"use client";
+
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+
 
 const Header = () => {
   const menus =  [
@@ -15,18 +19,21 @@ const Header = () => {
       url : '/about'
     }
   ]
+  const pathName = usePathname();
   return (
     <nav className='navbar w-full'>
       <div className="flex items-center mx-auto p-4 text-xl ">
         <div className='w-1/3'>
+        <Link href='/'>
           LOGO
+        </Link>
         </div>
         <div className='flex justify-center items-center w-1/3'>
           <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0">
             {
-              menus.map((item)=>{
+              menus.map((item, index)=>{
                 return (
-                  <li className='text-orange-400 hover:text-orange-600'>
+                  <li key={index} className={`hover:text-orange-400 ${pathName===item.url?`text-orange-600`:'text-black'}`}>
                     <Link href={item.url}>{item.title}</Link>
                   </li>
                 )
@@ -41,7 +48,7 @@ const Header = () => {
             data-twe-ripple-color="light"
             className="inline-block rounded bg-[#1877f2] px-2.5 py-2.5 text-xs font-medium uppercase leading-normal text-white shadow-md transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg"
             >
-              <span class="[&>svg]:h-4 [&>svg]:w-4">
+              <span className="[&>svg]:h-4 [&>svg]:w-4">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
@@ -56,7 +63,7 @@ const Header = () => {
             data-twe-ripple-init
             data-twe-ripple-color="light"
             className="inline-block rounded bg-[#c13584] px-2.5 py-2.5 text-xs font-medium uppercase leading-normal text-white shadow-md transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg">
-            <span class="[&>svg]:h-4 [&>svg]:w-4">
+            <span className="[&>svg]:h-4 [&>svg]:w-4">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"

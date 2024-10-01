@@ -19,14 +19,18 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  const customFontSans = 'font-[family-name:var(--font-geist-sans)]'
+  const customFontMono = 'font-[family-name:var(--font-geist-mono)]'
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black`}
       >
-        <div className="min-h-screen p-32 pb-20 gap-16 font-[family-name:var(--font-geist-sans)]">
+        <div className={`min-h-screen 2xl:mx-96 sm:mx-40 sm:gap-16 ${customFontMono} bg-white rounded`}>
           <Header/>
+            <main className="flex flex-col gap-8 items-center justify-center px-20 py-10">
           {children}
+          </main>
         </div>
       </body>
     </html>
